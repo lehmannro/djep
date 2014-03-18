@@ -233,6 +233,7 @@ class UpdateReviewView(generic_views.UpdateView):
         data = super(UpdateReviewView, self).get_context_data(**kwargs)
         data['proposal'] = self.object.proposal
         data['proposal_version'] = models.ProposalVersion.objects.get_latest_for(self.object.proposal)
+        data['current_title'] = data['proposal_version'].title if data['proposal_version'] else data['proposal'].title
         return data
 
     def get_success_url(self):
@@ -516,7 +517,8 @@ class UpdateProposalView(TemplateResponseMixin, generic_views.View):
         return self.render_to_response({
             'form': self.form,
             'proposal': self.object,
-            'proposal_version': self.proposal_version
+            'proposal_version': self.proposal_version,
+            'current_title': self.proposal_version.title if self.proposal_version else self.object.title,
             })
 
     def post(self, request, *args, **kwargs):
@@ -582,6 +584,7 @@ class ProposalReviewsView(generic_views.ListView):
         data = super(ProposalReviewsView, self).get_context_data(**kwargs)
         data['proposal'] = get_object_or_404(models.Proposal, pk=self.kwargs['proposal_pk'])
         data['proposal_version'] = models.ProposalVersion.objects.get_latest_for(data['proposal'])
+        data['current_title'] = data['proposal_version'].title if data['proposal_version'] else data['proposal'].title
         return data
 
     def get_queryset(self):

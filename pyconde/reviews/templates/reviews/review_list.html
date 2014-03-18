@@ -1,8 +1,8 @@
 {% extends "reviews/proposal_base.html" %}
 {% load markup account_tags i18n %}
 {% block bodyclass %}{{ block.super }} reviewlist{% endblock %}
-{% block title %}{% blocktrans with title=proposal.title %}Reviews of "{{ title }}"{% endblocktrans %}{% endblock %}
-{% block page_title %}{% blocktrans with title=proposal.title %}Reviews of "{{ title }}"{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with title=current_title %}Reviews of "{{ title }}"{% endblocktrans %}{% endblock %}
+{% block page_title %}{% blocktrans with title=current_title %}Reviews of "{{ title }}"{% endblocktrans %}{% endblock %}
 {% block details %}
     {% if not object_list %}
     <p class="empty">{% trans "This proposal has not yet been reviewed." %}</p>
