@@ -187,6 +187,7 @@ class SubmitReviewView(generic_views.TemplateView):
             'form': self.form,
             'proposal': self.proposal,
             'proposal_version': self.proposal_version,
+            'current_title': self.proposal_version.title if self.proposal_version else self.proposal.title,
         }
 
     @method_decorator(decorators.reviewer_required)

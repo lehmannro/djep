@@ -1,8 +1,8 @@
 {% extends "reviews/proposal_base.html" %}
 {% load crispy_forms_tags i18n %}
 {% block bodyclass %}{{ block.super }} reviewform{% endblock %}
-{% block title %}{% blocktrans with title=proposal.title %}Review "{{ title }}"{% endblocktrans %}{% endblock %}
-{% block page_title %}{% blocktrans with title=proposal.title %}Review "{{ title }}"{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with title=current_title %}Review "{{ title }}"{% endblocktrans %}{% endblock %}
+{% block page_title %}{% blocktrans with title=current_title %}Review "{{ title }}"{% endblocktrans %}{% endblock %}
 {% block details %}
     <div id="help">
     {% blocktrans %}
